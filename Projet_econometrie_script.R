@@ -67,7 +67,23 @@ dev.off();
 
 
 
+#==================================#
+#                                  #
+#      Matrice de corrélation      #
+#                                  #
+#==================================#
+library(corrplot);
+df_noyear = subset (df, select = -c(Year))
+names(df_noyear)
 
+names(df_noyear)[names(df_noyear)=="PIB.en.volume..en.milliards.d.euros.2014."] <- "PIB"
+
+mat_cor<-cor(df_noyear) ; #Correlation matrix
+
+par(xpd=TRUE)
+png(file = "Mat_correlation_all_var.png", width = 800, height = 700)
+corrplot(mat_cor, type="upper", tl.col="black", tl.srt=45) #Correlation matrix plot
+dev.off()
 
 
 #==================================#
